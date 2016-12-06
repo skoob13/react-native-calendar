@@ -334,13 +334,13 @@ let Calendar = React.createClass({
   _onPrev(){
     this._prependMonth();
     this._scrollToItem(VIEW_INDEX);
-    this.props.onTouchPrev && this.props.onTouchPrev(this.state.calendarDates[VIEW_INDEX]);
+    this.props.onTouchPrev && this.props.onTouchPrev(this.state.currentMonth);
   },
 
   _onNext(){
     this._appendMonth();
     this._scrollToItem(VIEW_INDEX);
-    this.props.onTouchNext && this.props.onTouchNext(this.state.calendarDates[VIEW_INDEX]);
+    this.props.onTouchNext && this.props.onTouchNext(this.state.currentMonth);
   },
 
   _scrollToItem(itemIndex) {
@@ -357,11 +357,11 @@ let Calendar = React.createClass({
     if (currentPage < VIEW_INDEX) {
       this._prependMonth();
       this._scrollToItem(VIEW_INDEX);
-      this.props.onSwipePrev && this.props.onSwipePrev();
+      this.props.onSwipePrev && this.props.onSwipePrev(this.state.calendarDates[VIEW_INDEX]);
     } else if (currentPage > VIEW_INDEX) {
       this._appendMonth();
       this._scrollToItem(VIEW_INDEX);
-      this.props.onSwipeNext && this.props.onSwipeNext();
+      this.props.onSwipeNext && this.props.onSwipeNext(this.state.calendarDates[VIEW_INDEX]);
     } else {
       return false;
     }
