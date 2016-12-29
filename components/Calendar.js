@@ -248,7 +248,7 @@ export default class Calendar extends Component {
   }
 
   renderTopBar() {
-    const isAvailablePrev = moment(this.state.currentMonthMoment).subtract(1, 'month')
+    const isAvailablePrev = moment(this.state.currentMonthMoment)
       .isSameOrAfter(this.props.minDate);
     const isAvailableNext = moment(this.state.currentMonthMoment).add(1, 'month')
       .isSameOrBefore(this.props.maxDate);
