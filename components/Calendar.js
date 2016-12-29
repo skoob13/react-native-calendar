@@ -248,9 +248,9 @@ export default class Calendar extends Component {
   }
 
   renderTopBar() {
-    const isAvailablePrev = moment(this.props.minDate).subtract(1, 'month')
+    const isAvailablePrev = moment(this.state.currentMonthMoment).subtract(1, 'month')
       .isSameOrAfter(this.props.minDate);
-    const isAvailableNext = moment(this.props.maxDate).add(1, 'month')
+    const isAvailableNext = moment(this.state.currentMonthMoment).add(1, 'month')
       .isSameOrBefore(this.props.maxDate);
 
     let localizedMonth = this.props.monthNames[this.state.currentMonthMoment.month()];
