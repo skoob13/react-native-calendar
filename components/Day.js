@@ -30,11 +30,7 @@ export default class Day extends Component {
     const dayCircleStyle = [styles.dayCircleFiller, customStyle.dayCircleFiller];
 
     if (isSelected) {
-      if (isToday) {
-        dayCircleStyle.push(styles.currentDayCircle, customStyle.currentDayCircle);
-      } else {
-        dayCircleStyle.push(styles.selectedDayCircle, customStyle.selectedDayCircle);
-      }
+      dayCircleStyle.push(styles.selectedDayCircle, customStyle.selectedDayCircle);
     }
 
     if (event) {
