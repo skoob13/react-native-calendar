@@ -30,7 +30,11 @@ export default class Day extends Component {
     const dayCircleStyle = [styles.dayCircleFiller, customStyle.dayCircleFiller];
 
     if (isSelected) {
-      dayCircleStyle.push(styles.selectedDayCircle, customStyle.selectedDayCircle);
+      if (isToday) {
+        dayCircleStyle.push(styles.currentDayCircle, customStyle.currentDayCircle);
+      } else {
+        dayCircleStyle.push(styles.selectedDayCircle, customStyle.selectedDayCircle);
+      }
     }
 
     if (event) {
@@ -81,7 +85,7 @@ export default class Day extends Component {
         </TouchableWithoutFeedback>
       )
     : (
-      <TouchableOpacity onPress={this.props.onPress}>
+      <TouchableOpacity onPress={this.props.onPress} activeOpacity={0.9}>
         <View style={[styles.dayButton, customStyle.dayButton]}>
           <View style={this.dayCircleStyle(isWeekend, isSelected, isToday, event)}>
             <Text style={this.dayTextStyle(isWeekend, isSelected, isToday, event)}>{caption}</Text>

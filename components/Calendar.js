@@ -26,6 +26,8 @@ export default class Calendar extends Component {
     customStyle: PropTypes.object,
     dayHeadings: PropTypes.array,
     eventDates: PropTypes.array,
+    maxDate: PropTypes.any,
+    minDate: PropTypes.any,
     monthNames: PropTypes.array,
     nextButtonText: PropTypes.oneOfType([
       PropTypes.string,
@@ -76,7 +78,7 @@ export default class Calendar extends Component {
   componentDidUpdate() {
     this.scrollToItem(VIEW_INDEX);
   }
-  
+
   componentWillReceiveProps(props) {
     if (props.selectedDate) {
       this.setState({selectedMoment: props.selectedDate});
@@ -246,12 +248,18 @@ export default class Calendar extends Component {
   }
 
   renderTopBar() {
+    const isAvailablePrev = moment(this.props.minDate).subtract(1, 'month')
+      .isSameOrAfter(this.props.minDate);
+    const isAvailableNext = moment(this.props.maxDate).add(1, 'month')
+      .isSameOrBefore(this.props.maxDate);
+
     let localizedMonth = this.props.monthNames[this.state.currentMonthMoment.month()];
     return this.props.showControls
     ? (
         <View style={[styles.calendarControls, this.props.customStyle.calendarControls]}>
           <TouchableOpacity
-            style={[styles.controlButton, this.props.customStyle.controlButton]}
+            disabled={!isAvailablePrev}
+            style={[styles.controlButton, this.props.customStyle.controlButton, !isAvailablePrev && {backgroundColor: 'red'}]}
             onPress={this.onPrev}
           >
             <Text style={[styles.controlButtonText, this.props.customStyle.controlButtonText]}>
@@ -262,8 +270,9 @@ export default class Calendar extends Component {
             {localizedMonth} {this.state.currentMonthMoment.year()}
           </Text>
           <TouchableOpacity
-            style={[styles.controlButton, this.props.customStyle.controlButton]}
-            onPress={this.onNext}
+            disabled={!isAvailableNext}
+            style={[styles.controlButton, this.props.customStyle.controlButton, !isAvailableNext && {backgroundColor: 'red'}]}
+            onPress={isAvailableNext ? this.onNext : () => {}}
           >
             <Text style={[styles.controlButtonText, this.props.customStyle.controlButtonText]}>
               {this.props.nextButtonText}
