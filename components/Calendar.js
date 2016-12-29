@@ -259,7 +259,7 @@ export default class Calendar extends Component {
         <View style={[styles.calendarControls, this.props.customStyle.calendarControls]}>
           <TouchableOpacity
             disabled={!isAvailablePrev}
-            style={[styles.controlButton, this.props.customStyle.controlButton, !isAvailablePrev && {backgroundColor: 'red'}]}
+            style={[styles.controlButton, this.props.customStyle.controlButton, !isAvailablePrev && {opacity: 0.5}]}
             onPress={this.onPrev}
           >
             <Text style={[styles.controlButtonText, this.props.customStyle.controlButtonText]}>
@@ -271,7 +271,7 @@ export default class Calendar extends Component {
           </Text>
           <TouchableOpacity
             disabled={!isAvailableNext}
-            style={[styles.controlButton, this.props.customStyle.controlButton, !isAvailableNext && {backgroundColor: 'red'}]}
+            style={[styles.controlButton, this.props.customStyle.controlButton, !isAvailableNext && {opacity: 0.5}]}
             onPress={isAvailableNext ? this.onNext : () => {}}
           >
             <Text style={[styles.controlButtonText, this.props.customStyle.controlButtonText]}>
