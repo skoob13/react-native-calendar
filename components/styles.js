@@ -15,7 +15,8 @@ const styles = StyleSheet.create({
   controlButton: {
   },
   controlButtonText: {
-    margin: 10,
+    marginHorizontal: 10,
+    marginBottom: 10,
     fontSize: 15,
   },
   title: {
@@ -47,13 +48,11 @@ const styles = StyleSheet.create({
   },
   dayButton: {
     alignItems: 'center',
-    padding: 5,
     width: DEVICE_WIDTH / 7,
     borderTopWidth: 1,
     borderTopColor: '#e9e9e9',
   },
   dayButtonFiller: {
-    padding: 5,
     width: DEVICE_WIDTH / 7,
   },
   day: {
